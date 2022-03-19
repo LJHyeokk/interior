@@ -16,7 +16,7 @@ const Product = () => {
         setData(res);
       });
   }, []);
-  console.log(data);
+
   return (
     <div className="Product">
       <Top />
