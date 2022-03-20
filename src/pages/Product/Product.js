@@ -10,10 +10,10 @@ const Product = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/data/imgSlide.json')
+    fetch('http://localhost:8001/list')
       .then((res) => res.json())
       .then((res) => {
-        setData(res);
+        setData(res.data);
       });
   }, []);
 
@@ -32,15 +32,16 @@ const Product = () => {
             return (
               <div
                 className="itemBox"
+                key={index}
                 onClick={() => {
                   navigate(`/detail/${item.id}`);
                 }}
               >
                 <div className="itemImg">
-                  <img src={item.url} alt={item.description} />
+                  <img src={item.url} alt={item.title} />
                 </div>
                 <div className="itemTitle">{item.title}</div>
-                <div className="itemDescription">{item.description}</div>
+                <div className="itemDescription">{item.miniDescription}</div>
               </div>
             );
           })}
