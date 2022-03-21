@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import './Write.scss';
+import { useNavigate, useParams } from 'react-router-dom';
+import './Edit.scss';
 
-const Write = () => {
+const Edit = () => {
   const navigate = useNavigate();
+  const params = useParams();
   const [title, setTitle] = useState('');
   const [name, setName] = useState('');
   const [size, setSize] = useState('');
@@ -15,9 +16,38 @@ const Write = () => {
   const [description, setDescription] = useState('');
   const [miniDescription, setMiniDescription] = useState('');
   const [file, setFile] = useState([]);
+  const [data, setData] = useState([]);
+  const [img, setImg] = useState();
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_BACKSERVER_URL}/detail/${params.id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        token: localStorage.getItem('token'),
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setData(...res.data);
+        setImg(...res.data);
+      });
+  }, []);
+
+  useEffect(() => {
+    setTitle(data?.title);
+    setName(data?.name);
+    setSize(data?.size);
+    setLocation(data?.location);
+    setType(data?.type);
+    setStatus(data?.status);
+    setDate(data?.date);
+    setDescription(data?.description);
+    setMiniDescription(data?.miniDescription);
+  }, [data]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     let dataInfo = {
       title,
       name,
@@ -29,31 +59,38 @@ const Write = () => {
       description,
       miniDescription,
     };
+
     const formData = new FormData();
     formData.append('data', JSON.stringify(dataInfo));
-    for (let i = 0; i < file.length; i++) {
-      formData.append('images', file[i]);
-    }
-    await axios({
-      method: 'POST',
-      url: `${process.env.REACT_APP_BACKSERVER_URL}/upload`,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        token: localStorage.getItem('token'),
-      },
-      data: formData,
-    })
-      .then((response) => {
-        if (response.data.message === 'CREATE SUCCESS') {
-          alert('업로드 성공');
-          navigate('/product');
-        } else {
-          alert(response.data.message);
-        }
+
+    if (!!file[0]) {
+      for (let i = 0; i < file.length; i++) {
+        formData.append('images', file[i]);
+      }
+
+      await axios({
+        method: 'PUT',
+        url: `${process.env.REACT_APP_BACKSERVER_URL}/uploadEdit/${params.id}`,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          token: localStorage.getItem('token'),
+        },
+        data: formData,
       })
-      .catch(function (error) {
-        alert('TOKEN 기간만료 : 재로그인 해주세요.');
-      });
+        .then((response) => {
+          if (response.data.message === 'SUCCESS EDIT') {
+            alert('편집 완료');
+            navigate('/product');
+          } else {
+            alert(response.data.message);
+          }
+        })
+        .catch(function (error) {
+          alert('TOKEN 기간만료 : 재로그인 해주세요.');
+        });
+    } else {
+      alert('이미지를 넣어주세요');
+    }
   };
 
   const selectImg = (e) => {
@@ -67,7 +104,7 @@ const Write = () => {
     <div className="Write">
       <div className="uploadBox">
         <form onSubmit={onSubmit}>
-          <div className="title">INTERIOR DETAIL UPLOAD BOX</div>
+          <div className="title">INTERIOR DETAIL 'EDIT' BOX</div>
           <div className="imgUploadBox">
             <div className="uploadImg">
               <span>Add Images</span>
@@ -103,13 +140,17 @@ const Write = () => {
                   <input
                     type="text"
                     placeholder="ex) Luxury kitchen"
-                    onChange={(e) => setName(e.target.value)}
+                    value={name || ''}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
                   ></input>
                 </li>
                 <li>
                   <input
                     type="text"
                     placeholder="ex) 15평"
+                    value={size || ''}
                     onChange={(e) => setSize(e.target.value)}
                   ></input>
                 </li>
@@ -117,12 +158,14 @@ const Write = () => {
                   <input
                     type="text"
                     placeholder="ex) 부산광역시 OO구 OO동"
+                    value={location || ''}
                     onChange={(e) => setLocation(e.target.value)}
                   ></input>
                 </li>
                 <li>
                   <input
                     type="text"
+                    value={miniDescription || ''}
                     placeholder="ex) 짧은 동선과 실용적인 수납공간"
                     onChange={(e) => setMiniDescription(e.target.value)}
                   ></input>
@@ -139,6 +182,7 @@ const Write = () => {
                   <input
                     type="text"
                     placeholder="ex) Luxury kitchen"
+                    value={title || ''}
                     onChange={(e) => setTitle(e.target.value)}
                   ></input>
                 </li>
@@ -146,6 +190,7 @@ const Write = () => {
                   <input
                     type="text"
                     placeholder="ex) 주방 인테리어"
+                    value={type || ''}
                     onChange={(e) => setType(e.target.value)}
                   ></input>
                 </li>
@@ -153,6 +198,7 @@ const Write = () => {
                   <input
                     type="text"
                     placeholder="ex) 완공"
+                    value={status || ''}
                     onChange={(e) => setStatus(e.target.value)}
                   ></input>
                 </li>
@@ -160,6 +206,7 @@ const Write = () => {
                   <input
                     type="text"
                     placeholder="ex) 2022-03-18"
+                    value={date || ''}
                     onChange={(e) => setDate(e.target.value)}
                   ></input>
                 </li>
@@ -168,6 +215,7 @@ const Write = () => {
           </div>
           <textarea
             placeholder="상세설명을 적어주세요."
+            value={description || ''}
             onChange={(e) => {
               setDescription(e.target.value);
             }}
@@ -183,4 +231,4 @@ const Write = () => {
   );
 };
 
-export default Write;
+export default Edit;

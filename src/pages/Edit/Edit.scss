@@ -1,0 +1,83 @@
+.Edit {
+  .uploadBox {
+    width: 50vw;
+    margin-left: 25vw;
+    margin-top: 10vh;
+    .title {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      padding-bottom: 20px;
+      border-bottom: 1px solid black;
+    }
+    .imgUploadBox {
+      display: flex;
+      margin-top: 50px;
+      justify-content: space-evenly;
+      .uploadImg {
+        margin-right: 10vw;
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+        border: 3px solid rgb(28, 95, 69);
+        border-radius: 30px;
+        span {
+          font-size: 20px;
+          margin-bottom: 30px;
+        }
+      }
+      .uploadInfo {
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+        align-items: center;
+        ul {
+          li {
+            padding: 15px;
+            input {
+              width: 250px;
+              border-radius: 5px;
+              padding: 1px;
+            }
+          }
+        }
+        ul:first-child {
+          font-weight: bold;
+        }
+        ul:nth-child(3) {
+          font-weight: bold;
+        }
+      }
+    }
+    textarea {
+      margin-left: 20%;
+      margin-top: 100px;
+      width: 30vw;
+      height: 20vh;
+      padding: 10px;
+      border-radius: 20px;
+    }
+    .submit {
+      text-align: center;
+      padding-top: 50px;
+      margin-top: 50px;
+      border-top: 1px solid black;
+      button {
+        width: 10vw;
+        height: 3vh;
+        background-color: crimson;
+        border: none;
+        color: whitesmoke;
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 10px;
+        opacity: 0.7;
+        cursor: pointer;
+        &:hover {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+}

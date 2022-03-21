@@ -7,12 +7,21 @@ import './Product.scss';
 
 const Product = () => {
   const [data, setData] = useState([]);
+  const [isAdmin, setIsAdmin] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:8001/list')
+    fetch(`${process.env.REACT_APP_BACKSERVER_URL}/list`, {
+      headers: {
+        'Content-Type': 'application/json',
+        token: localStorage.getItem('token'),
+      },
+    })
       .then((res) => res.json())
       .then((res) => {
+        if (res.isAdmin) {
+          setIsAdmin(res.isAdmin);
+        }
         setData(res.data);
       });
   }, []);
@@ -24,8 +33,10 @@ const Product = () => {
       <TopNav />
       <div className="itemWrapper">
         <div className="navi">
-          <ImHome2 /> <span> {'>'} INTERIOR</span>
+          {isAdmin ? <AdminOption navigate={navigate} /> : null} <ImHome2 />
+          <span> {'>'} INTERIOR</span>
         </div>
+
         <div className="title">INTERIOR({data.length})</div>
         <div className="itemContainer">
           {data?.map((item, index) => {
@@ -48,6 +59,21 @@ const Product = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const AdminOption = ({ navigate }) => {
+  return (
+    <span className="adminBox">
+      <span
+        className="writeButton"
+        onClick={() => {
+          navigate('/admin/write');
+        }}
+      >
+        Admin Write
+      </span>
+    </span>
   );
 };
 
