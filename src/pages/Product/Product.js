@@ -59,6 +59,9 @@ const Product = () => {
           })}
         </div>
       </div>
+      <div className="md">
+        <img src="/images/detail/logo4.png" alt="interior" />
+      </div>
       <TopBottom />
       <Footer />
     </div>

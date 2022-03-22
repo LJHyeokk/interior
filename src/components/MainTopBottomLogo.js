@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 const Top = () => {
-  return <div className="top">미공의 장 [ 🧧 ] </div>;
+  return <div className="top">미공의 장 / MIGONG && INTERIOR DESIGIN </div>;
 };
 
 const Bottom = () => {

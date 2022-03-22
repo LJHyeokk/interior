@@ -47,7 +47,10 @@
     }
   }
   .itemWrapper {
-    margin-bottom: 150px;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    margin-bottom: 100px;
+    border-bottom: 1px solid #726a6a;
     height: auto;
     .navi {
       margin-top: 30px;
@@ -84,6 +87,7 @@
     .itemContainer {
       width: 1720px;
       margin-top: 50px;
+      margin-bottom: 50px;
       justify-content: flex-start;
       display: flex;
       flex-wrap: wrap;
@@ -115,6 +119,15 @@
           font-weight: bold;
         }
       }
+    }
+  }
+  .md {
+    width: 300px;
+    margin-bottom: 100px;
+    margin-left: calc(50% - 150px);
+    img {
+      width: 100%;
+      opacity: 0.7;
     }
   }
   .topBottom {
@@ -361,7 +374,7 @@
       ul {
         display: flex;
         justify-content: space-evenly;
-        font-size: 5px !important;
+        font-size: 7px !important;
         font-weight: bold;
         padding: 5px !important;
         margin-left: 10vw;
@@ -399,7 +412,7 @@
         }
       }
       .title {
-        font-size: 7px !important;
+        font-size: 8px !important;
         padding: 15px;
         border-bottom: 1px solid #726a6a;
         margin-left: 4vw;
@@ -437,7 +450,7 @@
           .itemTitle {
             margin-top: 10px !important;
             margin-bottom: 10px;
-            font-size: 3px !important;
+            font-size: 7px !important;
             font-weight: bold;
           }
           .itemDescription {
@@ -446,11 +459,14 @@
         }
       }
     }
+    .md {
+      display: none;
+    }
     .topBottom {
       display: none;
     }
     footer {
-      height: 230px;
+      height: 180px;
       background-color: #221e1e;
       .footerSection {
         color: white;
@@ -463,7 +479,7 @@
             justify-content: space-between;
             height: 30px;
             padding: 10px 0 0 0;
-            font-size: 5px;
+            font-size: 10px;
             .leftNav {
               margin-left: 3vw;
               span {
@@ -482,7 +498,7 @@
           }
 
           .mainBanner {
-            margin: 30px auto;
+            margin: 10px auto;
             text-align: center;
             font-size: 15px;
             font-weight: 600;
@@ -490,7 +506,7 @@
 
           .companyInfo {
             margin-left: 3vw;
-            font-size: 5px;
+            font-size: 10px;
             .infoKey {
               color: grey;
               text-align: left;
