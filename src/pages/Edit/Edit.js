@@ -123,9 +123,7 @@ const Edit = () => {
                   color: 'red',
                 }}
               >
-                *주의* 이미지파일의 이름에 ),(,/ 등의 특수문자가 들어가면
-                이미지가 삭제되지않아 저장소 요금이 늘어납니다.
-                <div style={{ color: 'green' }}>(only 숫자,한글,영어 사용)</div>
+                *주의* 이미지파일을 다시 넣어주셔야 합니다.
               </span>
             </div>
             <div className="uploadInfo">
@@ -139,9 +137,11 @@ const Edit = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={15}
                     placeholder="ex) Luxury kitchen"
                     value={name || ''}
                     onChange={(e) => {
+                      console.log(e.target.value.length);
                       setName(e.target.value);
                     }}
                   ></input>
@@ -149,6 +149,7 @@ const Edit = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={15}
                     placeholder="ex) 15평"
                     value={size || ''}
                     onChange={(e) => setSize(e.target.value)}
@@ -157,6 +158,7 @@ const Edit = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={15}
                     placeholder="ex) 부산광역시 OO구 OO동"
                     value={location || ''}
                     onChange={(e) => setLocation(e.target.value)}
@@ -165,6 +167,7 @@ const Edit = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={80}
                     value={miniDescription || ''}
                     placeholder="ex) 짧은 동선과 실용적인 수납공간"
                     onChange={(e) => setMiniDescription(e.target.value)}
@@ -181,6 +184,7 @@ const Edit = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={15}
                     placeholder="ex) Luxury kitchen"
                     value={title || ''}
                     onChange={(e) => setTitle(e.target.value)}
@@ -189,6 +193,7 @@ const Edit = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={15}
                     placeholder="ex) 주방 인테리어"
                     value={type || ''}
                     onChange={(e) => setType(e.target.value)}
@@ -197,6 +202,7 @@ const Edit = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={15}
                     placeholder="ex) 완공"
                     value={status || ''}
                     onChange={(e) => setStatus(e.target.value)}
@@ -205,7 +211,8 @@ const Edit = () => {
                 <li>
                   <input
                     type="text"
-                    placeholder="ex) 2022-03-18"
+                    maxLength={15}
+                    placeholder="ex) 1522-03-18"
                     value={date || ''}
                     onChange={(e) => setDate(e.target.value)}
                   ></input>
@@ -216,6 +223,7 @@ const Edit = () => {
           <textarea
             placeholder="상세설명을 적어주세요."
             value={description || ''}
+            maxLength={300}
             onChange={(e) => {
               setDescription(e.target.value);
             }}

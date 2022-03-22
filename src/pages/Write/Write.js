@@ -79,17 +79,6 @@ const Write = () => {
                 accept="image/jpg,image/png,image/jpeg,image/gif"
                 onChange={selectImg}
               />
-              <span
-                style={{
-                  marginTop: '30px',
-                  letterSpacing: '2px',
-                  color: 'red',
-                }}
-              >
-                *주의* 이미지파일의 이름에 ),(,/ 등의 특수문자가 들어가면
-                이미지가 삭제되지않아 저장소 요금이 늘어납니다.
-                <div style={{ color: 'green' }}>(only 숫자,한글,영어 사용)</div>
-              </span>
             </div>
             <div className="uploadInfo">
               <ul>
@@ -102,6 +91,7 @@ const Write = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={15}
                     placeholder="ex) Luxury kitchen"
                     onChange={(e) => setName(e.target.value)}
                   ></input>
@@ -109,6 +99,7 @@ const Write = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={15}
                     placeholder="ex) 15평"
                     onChange={(e) => setSize(e.target.value)}
                   ></input>
@@ -116,6 +107,7 @@ const Write = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={15}
                     placeholder="ex) 부산광역시 OO구 OO동"
                     onChange={(e) => setLocation(e.target.value)}
                   ></input>
@@ -123,6 +115,7 @@ const Write = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={80}
                     placeholder="ex) 짧은 동선과 실용적인 수납공간"
                     onChange={(e) => setMiniDescription(e.target.value)}
                   ></input>
@@ -138,6 +131,7 @@ const Write = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={15}
                     placeholder="ex) Luxury kitchen"
                     onChange={(e) => setTitle(e.target.value)}
                   ></input>
@@ -145,6 +139,7 @@ const Write = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={15}
                     placeholder="ex) 주방 인테리어"
                     onChange={(e) => setType(e.target.value)}
                   ></input>
@@ -152,6 +147,7 @@ const Write = () => {
                 <li>
                   <input
                     type="text"
+                    maxLength={15}
                     placeholder="ex) 완공"
                     onChange={(e) => setStatus(e.target.value)}
                   ></input>
@@ -159,7 +155,8 @@ const Write = () => {
                 <li>
                   <input
                     type="text"
-                    placeholder="ex) 2022-03-18"
+                    maxLength={15}
+                    placeholder="ex) 1522-03-18"
                     onChange={(e) => setDate(e.target.value)}
                   ></input>
                 </li>
@@ -168,6 +165,7 @@ const Write = () => {
           </div>
           <textarea
             placeholder="상세설명을 적어주세요."
+            maxLength={300}
             onChange={(e) => {
               setDescription(e.target.value);
             }}

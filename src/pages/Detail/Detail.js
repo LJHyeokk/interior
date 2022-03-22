@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Top, Logo } from '../../components/MainTopBottomLogo';
 import TopNav from '../../components/TopNav';
+import TopBottom from '../../components/mini';
 import { ImHome2 } from 'react-icons/im';
+import Footer from '../../components/Footer';
 import './Detail.scss';
 
 const Detail = () => {
@@ -89,26 +91,30 @@ const Detail = () => {
           <div className="itemDescription">
             <div className="itemTitle">{data?.title}</div>
             <div className="itemInfoDetail">
-              <ul>
-                <li>NAME</li>
-                <li>SIZE</li>
-                <li>LOCATION</li>
-              </ul>
-              <ul>
-                <li>{data?.name}</li>
-                <li>{data?.size}</li>
-                <li>{data?.location}</li>
-              </ul>
-              <ul>
-                <li>TYPE</li>
-                <li>STATUS</li>
-                <li>DATE</li>
-              </ul>
-              <ul>
-                <li>{data?.type}</li>
-                <li>{data?.status}</li>
-                <li>{data?.date}</li>
-              </ul>
+              <div>
+                <ul>
+                  <li>NAME</li>
+                  <li>SIZE</li>
+                  <li>LOCATION</li>
+                </ul>
+                <ul>
+                  <li>{data?.name}</li>
+                  <li>{data?.size}</li>
+                  <li>{data?.location}</li>
+                </ul>
+              </div>
+              <div>
+                <ul>
+                  <li>TYPE</li>
+                  <li>STATUS</li>
+                  <li>DATE</li>
+                </ul>
+                <ul>
+                  <li>{data?.type}</li>
+                  <li>{data?.status}</li>
+                  <li>{data?.date}</li>
+                </ul>
+              </div>
             </div>
             <div className="itemDetail">{data?.description} </div>
           </div>
@@ -123,6 +129,8 @@ const Detail = () => {
           })}
         </div>
       </div>
+      <TopBottom />
+      <Footer />
     </div>
   );
 };

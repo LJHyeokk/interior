@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Top, Logo } from '../../components/MainTopBottomLogo';
 import TopNav from '../../components/TopNav';
+import TopBottom from '../../components/mini';
+import Footer from '../../components/Footer';
 import { ImHome2 } from 'react-icons/im';
 import './Product.scss';
 
@@ -36,9 +38,8 @@ const Product = () => {
           {isAdmin ? <AdminOption navigate={navigate} /> : null} <ImHome2 />
           <span> {'>'} INTERIOR</span>
         </div>
-
         <div className="title">INTERIOR({data.length})</div>
-        <div className="itemContainer">
+        <div className="itemContainer" id="asd">
           {data?.map((item, index) => {
             return (
               <div
@@ -58,6 +59,8 @@ const Product = () => {
           })}
         </div>
       </div>
+      <TopBottom />
+      <Footer />
     </div>
   );
 };
