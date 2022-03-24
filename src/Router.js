@@ -5,6 +5,7 @@ import Detail from './pages/Detail/Detail';
 import Write from './pages/Write/Write';
 import Login from './pages/Login/Login';
 import Edit from './pages/Edit/Edit';
+import Counseling from './pages/Counseling/Counseling';
 
 function Router() {
   return (
@@ -15,7 +16,8 @@ function Router() {
         <Route path="/detail/:detail" element={<Detail />} />
         <Route path="/admin" element={<Login />} />
         <Route path="/admin/write" element={<Write />} />
-        <Route path="/admin/write/:id" element={<Edit />} />
+        <Route path="/admin/write/:id" element={<Edit />} />{' '}
+        <Route path="/counseling" element={<Counseling />} />s
       </Routes>
     </BrowserRouter>
   );
