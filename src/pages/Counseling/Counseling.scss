@@ -1,0 +1,66 @@
+.Counseling {
+  letter-spacing: 2px;
+  .top {
+    color: snow;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: right;
+    width: 100vw;
+    height: 45px;
+    background-color: #302b2b;
+    padding: 15px;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+  }
+  .logo {
+    margin-left: calc(50% - 100px);
+    margin-right: calc(50% - 100px);
+    margin-top: 50px;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .TopNav {
+    margin-top: 30px;
+    border-top: 1px solid #726a6a;
+    border-bottom: 7px solid #302b2b;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    ul {
+      display: flex;
+      justify-content: space-evenly;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 15px;
+      margin-left: 10vw;
+      margin-right: 10vw;
+      li {
+        cursor: pointer;
+      }
+    }
+  }
+  .itemWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    align-items: center;
+    .navi {
+      width: 100vw;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 30px;
+      text-align: right;
+      margin-right: 4vw;
+      vertical-align: middle;
+      color: #726a6a;
+    }
+  }
+}

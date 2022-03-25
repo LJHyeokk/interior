@@ -29,7 +29,7 @@ const TopNav = () => {
         </li>
         <li
           onClick={() => {
-            navigate(`/`);
+            navigate(`/counseling`);
           }}
         >
           상담문의
